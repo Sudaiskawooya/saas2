@@ -30,6 +30,7 @@ export async function POST(req: NextRequest) {
           username: username,
         },
       });
+      console.log("User created:", userId);
     }
 
     // and here as well
