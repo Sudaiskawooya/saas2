@@ -6,19 +6,8 @@ export async function POST(req: NextRequest) {
   try {
     const evt = await verifyWebhook(req);
 
-    // Do something with payload
-    // For this guide, log payload to console
-    if (evt.type === "user.created") {
-      console.log("userId:", evt.data.id);
-    }
-    if (!evt.data.id) {
-      console.log("No user id found in payload");
-      return new Response("No user id found", { status: 400 });
-    }
-
-    // create space here
-
     const { userId } = await auth();
+    console.log("User created:", userId);
     const user = await currentUser();
     if (userId) {
       const username =
@@ -30,7 +19,6 @@ export async function POST(req: NextRequest) {
           username: username,
         },
       });
-      console.log("User created:", userId);
     }
 
     // and here as well
