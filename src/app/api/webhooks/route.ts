@@ -4,8 +4,6 @@ import { verifyWebhook } from "@clerk/nextjs/webhooks";
 import { NextRequest } from "next/server";
 export async function POST(req: NextRequest) {
   try {
-    const evt = await verifyWebhook(req);
-
     const { userId } = await auth();
     console.log("User created:", userId);
     const user = await currentUser();
