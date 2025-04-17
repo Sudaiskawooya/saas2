@@ -3,7 +3,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { NextRequest } from "next/server";
 export async function POST(req: NextRequest) {
   const { userId } = await auth();
-  console.log("User created:", userId);
+  console.log("User created: really", userId);
   try {
     const user = await currentUser();
     if (userId) {
