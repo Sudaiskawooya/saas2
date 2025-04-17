@@ -1,11 +1,10 @@
 import { prisma } from "@/lib/prisma";
-import { auth, currentUser, getAuth } from "@clerk/nextjs/server";
-import { verifyWebhook } from "@clerk/nextjs/webhooks";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { NextRequest } from "next/server";
 export async function POST(req: NextRequest) {
+  const { userId } = await auth();
+  console.log("User created:", userId);
   try {
-    const { userId } = await auth();
-    console.log("User created:", userId);
     const user = await currentUser();
     if (userId) {
       const username =
